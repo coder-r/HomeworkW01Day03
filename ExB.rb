@@ -67,27 +67,64 @@ p users["Erik"][:lottery_numbers]
 
 # Get the type of Avril's pet Monty
 
-p users["Avril"][:pets][2]
+p users["Avril"][:pets][0][:species]
 
 # Get the smallest of Erik's lottery numbers
 
 p users["Erik"][:lottery_numbers].sort[0]
+p users["Erik"][:lottery_numbers].min()
+
+
+
 
 # Return an array of Avril's lottery numbers that are even
 
 p users["Avril"][:lottery_numbers].select{ |num| num.even? }
 
+# avril_lottery = users["Avril"][:lottery_numbers]
+# p avril_lottery.select{ |lottery_number| lottery_number %2 == 0}
+
+# even_numbers = []
+# for number in users["Avril"][:lottery_numbers]
+#   even_numbers.push(number) if number.even?()
+# end
 
 # Erik is one lottery number short! Add the number 7 to be included in his lottery numbers
 
 p users["Erik"][:lottery_numbers].push(7)
+# p users["Erik"][:lottery_numbers] << (7)
 
 # Change Erik's hometown to Edinburgh
 users["Erik"][:home_town] = "Edinburgh"
+users["Erik"][:home_town].replace("Edinburgh")
+
 p users["Erik"][:home_town]
 
 # Add a pet dog to Erik called "Fluffy"
-# users["Erik"][:pets][:name] = "Fluffy"
-p users["Erik"][:pets][0]
+
+new_pet = {
+  name: "fluffy",
+  species: "dog"
+}
+
+p users["Erik"][:pets].push(new_pet)
+
+p users["Erik"][:pets]
 
 # Add another person to the users hash
+
+new_person = {
+  twitter: "codeclan"
+  lottery_numbers: [1,2,3,4,5,6,]
+  home_town: "Glasgow"
+  pets: [
+    {
+      name: "Scooty"
+      species:"Cat"
+    }
+  ]
+}
+
+user["Ally"] = new_person
+
+users.merge!(new_person)
